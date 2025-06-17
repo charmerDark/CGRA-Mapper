@@ -6,7 +6,7 @@ RUN apt-get -y update \
     && mkdir ${HOME}/cgra \
     && cd ${HOME}/cgra \
     && apt-get -y install git \
-    && git clone https://github.com/tancheng/CGRA-Mapper.git \
+    && git clone https://github.com/charmerDark/CGRA-Mapper.git \
     && apt-get -y install build-essential \
     && cd CGRA-Mapper && mkdir build && cd build && cmake .. \
     && make
