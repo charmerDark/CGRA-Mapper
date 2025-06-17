@@ -9,8 +9,11 @@
 
 ========================================================
 </pre>
-[![Github Action](https://github.com/tancheng/CGRA-Mapper/actions/workflows/cmake.yml/badge.svg)](https://github.com/tancheng/CGRA-Mapper/actions/workflows/cmake.yml)
+
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
+Fork of tancheng's [CGRA-Mapper](https://github.com/tancheng/CGRA-Mapper) for benchmarking tetricks tensor compiler for CGRAs. Please find the original documentation below.
+
 
 This is a CGRA (Coarse-Grained Reconfigurable Architecture) mapper to map the target loops onto the CGRA. The CGRA is parameterizable (e.g., CGRA size, type of the computing units in each tile, communication connection, etc.). Different advanced mapping strategies are built on top of this basic mapper. CGRA Mapper currently provides following features and functionalities:
 - It takes the arch&kernel info in `JSON` format. 
