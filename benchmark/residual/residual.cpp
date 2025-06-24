@@ -2,12 +2,8 @@
     y - Ax
     y - einsum("ij,j -> i", A,x)
 */
-
-float y[DIM_I];
-float x[DIM_I];
-float A[DIM_I][DIM_I];
-float output[DIM_I];
 #define DIM_I 4
+
 
 float y[DIM_I];
 float x[DIM_I];
