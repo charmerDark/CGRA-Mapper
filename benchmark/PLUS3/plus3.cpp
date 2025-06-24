@@ -31,7 +31,7 @@ void kernel(float A[][DIM_J], float B[][DIM_J], float C[][DIM_J], float output[]
 
         for(i = 0; i < DIM_I; i++){
                 for(j =0; j< DIM_J; j++){
-                        output[i][j]+= A[i][j] + B[i][j] * C[i][j];
+                        output[i][j]+= A[i][j] + B[i][j] + C[i][j];
                 }
         }
 }
