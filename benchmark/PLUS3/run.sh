@@ -1,0 +1,1 @@
+opt-12 -load /root/cgra/CGRA-Mapper/build/src/libmapperPass.so -mapperPass plus3.bc
