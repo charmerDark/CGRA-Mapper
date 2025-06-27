@@ -1,1 +1,1 @@
-opt-12 -load /root/cgra/CGRA-Mapper/benchmark/saxpy/libmapperPass.so -mapperPass saxpy.bc
+opt-12 -load /root/cgra/CGRA-Mapper/build/src/libmapperPass.so -mapperPass saxpy.bc
