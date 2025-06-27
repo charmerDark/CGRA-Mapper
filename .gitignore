@@ -10,3 +10,6 @@ build*/
 *.dot
 *.bc
 *.o
+benchmark/*/dfg.json
+benchmark/*/config.json
+benchmark/*/
