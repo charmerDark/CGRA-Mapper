@@ -4,10 +4,10 @@ Matricized tensor times Khatri-Rao product (MTTKRP)
 
 */
 
-#define DIM_I  2
-#define DIM_J  2
-#define DIM_K  2
-#define DIM_L 2
+#define DIM_I  3
+#define DIM_J  3
+#define DIM_K  3
+#define DIM_L 3
 
 float A[DIM_I][DIM_K][DIM_L];
 float B[DIM_L][DIM_J];
