@@ -1,34 +1,20 @@
 Initialize opt latency for DFG nodes: 
 Deciding fusion strategy for DFG nodes: 
 Initialize additional functionality on CGRA nodes: 
-call-fp2fx : [4,8,7,11]: 4 8 7 11 
-complex-BrT : [4,5,6,7]: 4 5 6 7 
-complex-CoT : [8,9,10,11]: 8 9 10 11 
-complex-Ctrl : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 
-div : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 
-load : [0,1,2,3]: 0 1 2 3 
-store : [0,1,2,3]: 0 1 2 3 
 Finding fusion pattern for DFG: 
-4 : ["phi","add","icmp","br"]: "phi" "add" "icmp" "br" 
 [function 'main' is not in our target list]
 Initialize opt latency for DFG nodes: 
 Deciding fusion strategy for DFG nodes: 
 Initialize additional functionality on CGRA nodes: 
-call-fp2fx : [4,8,7,11]: 4 8 7 11 
-complex-BrT : [4,5,6,7]: 4 5 6 7 
-complex-CoT : [8,9,10,11]: 8 9 10 11 
-complex-Ctrl : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 
-div : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 
-load : [0,1,2,3]: 0 1 2 3 
-store : [0,1,2,3]: 0 1 2 3 
 Finding fusion pattern for DFG: 
-4 : ["phi","add","icmp","br"]: "phi" "add" "icmp" "br" 
 ==================================
 [function '_Z6kernelPA2_A2_fPS_S1_' is one of our targets]
 *** current function: _Z6kernelPA2_A2_fPS_S1_
 ==================================
 ==================================
 [reorder DFG along with the longest path]
+Without customization in param.json, we enable store functionality on the left most column.
+Without customization in param.json, we enable load functionality on the left most column.
 ==================================
 [show opcode count]
 add : 1
@@ -185,12 +171,11 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[10]-->[11] (bypass:0) dfgNode: 2 at cycle 2
 [DEBUG] skip predecessor routing -- dfgNode: 2
-[DEBUG] schedule dfg node[4] onto fu[1] at cycle 5 within II: 2
-[DEBUG] setDFGNode 4 onto CGRANode 1 at cycle: 5
-[DEBUG] occupy link[9]-->[5] (bypass:1) dfgNode: 3 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 1; link: 0 duration 1
+[DEBUG] schedule dfg node[4] onto fu[8] at cycle 4 within II: 2
+[DEBUG] setDFGNode 4 onto CGRANode 8 at cycle: 4
+[DEBUG] in allocateReg() t_cycle: 3; i: 0 CGRA node: 8; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[5]-->[1] (bypass:0) dfgNode: 3 at cycle 4
+[DEBUG] occupy link[9]-->[8] (bypass:0) dfgNode: 3 at cycle 3
 [DEBUG] skip predecessor routing -- dfgNode: 3
 [DEBUG] schedule dfg node[1] onto fu[5] at cycle 0 within II: 2
 [DEBUG] setDFGNode 1 onto CGRANode 5 at cycle: 0
@@ -226,19 +211,20 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[10]-->[11] (bypass:0) dfgNode: 2 at cycle 2
 [DEBUG] skip predecessor routing -- dfgNode: 2
-[DEBUG] schedule dfg node[4] onto fu[1] at cycle 5 within II: 2
-[DEBUG] setDFGNode 4 onto CGRANode 1 at cycle: 5
-[DEBUG] occupy link[9]-->[5] (bypass:1) dfgNode: 3 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 1; link: 0 duration 1
+[DEBUG] schedule dfg node[4] onto fu[8] at cycle 4 within II: 2
+[DEBUG] setDFGNode 4 onto CGRANode 8 at cycle: 4
+[DEBUG] in allocateReg() t_cycle: 3; i: 0 CGRA node: 8; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[5]-->[1] (bypass:0) dfgNode: 3 at cycle 4
+[DEBUG] occupy link[9]-->[8] (bypass:0) dfgNode: 3 at cycle 3
 [DEBUG] skip predecessor routing -- dfgNode: 3
-[DEBUG] schedule dfg node[6] onto fu[3] at cycle 5 within II: 2
-[DEBUG] setDFGNode 6 onto CGRANode 3 at cycle: 5
-[DEBUG] occupy link[11]-->[7] (bypass:1) dfgNode: 5 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 3; link: 0 duration 1
+[DEBUG] schedule dfg node[6] onto fu[12] at cycle 7 within II: 2
+[DEBUG] setDFGNode 6 onto CGRANode 12 at cycle: 7
+[DEBUG] occupy link[11]-->[10] (bypass:1) dfgNode: 5 at cycle 3
+[DEBUG] occupy link[10]-->[14] (bypass:1) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[14]-->[13] (bypass:1) dfgNode: 5 at cycle 5
+[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 12; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[3] (bypass:0) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[13]-->[12] (bypass:0) dfgNode: 5 at cycle 6
 [DEBUG] skip predecessor routing -- dfgNode: 5
 [DEBUG] schedule dfg node[1] onto fu[5] at cycle 0 within II: 2
 [DEBUG] setDFGNode 1 onto CGRANode 5 at cycle: 0
@@ -274,32 +260,34 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[10]-->[11] (bypass:0) dfgNode: 2 at cycle 2
 [DEBUG] skip predecessor routing -- dfgNode: 2
-[DEBUG] schedule dfg node[4] onto fu[1] at cycle 5 within II: 2
-[DEBUG] setDFGNode 4 onto CGRANode 1 at cycle: 5
-[DEBUG] occupy link[9]-->[5] (bypass:1) dfgNode: 3 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 1; link: 0 duration 1
+[DEBUG] schedule dfg node[4] onto fu[8] at cycle 4 within II: 2
+[DEBUG] setDFGNode 4 onto CGRANode 8 at cycle: 4
+[DEBUG] in allocateReg() t_cycle: 3; i: 0 CGRA node: 8; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[5]-->[1] (bypass:0) dfgNode: 3 at cycle 4
+[DEBUG] occupy link[9]-->[8] (bypass:0) dfgNode: 3 at cycle 3
 [DEBUG] skip predecessor routing -- dfgNode: 3
-[DEBUG] schedule dfg node[6] onto fu[3] at cycle 5 within II: 2
-[DEBUG] setDFGNode 6 onto CGRANode 3 at cycle: 5
-[DEBUG] occupy link[11]-->[7] (bypass:1) dfgNode: 5 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 3; link: 0 duration 1
+[DEBUG] schedule dfg node[6] onto fu[12] at cycle 7 within II: 2
+[DEBUG] setDFGNode 6 onto CGRANode 12 at cycle: 7
+[DEBUG] occupy link[11]-->[10] (bypass:1) dfgNode: 5 at cycle 3
+[DEBUG] occupy link[10]-->[14] (bypass:1) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[14]-->[13] (bypass:1) dfgNode: 5 at cycle 5
+[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 12; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[3] (bypass:0) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[13]-->[12] (bypass:0) dfgNode: 5 at cycle 6
 [DEBUG] skip predecessor routing -- dfgNode: 5
-[DEBUG] schedule dfg node[7] onto fu[2] at cycle 6 within II: 2
-[DEBUG] setDFGNode 7 onto CGRANode 2 at cycle: 6
-[DEBUG] in allocateReg() t_cycle: 5; i: 0 CGRA node: 2; link: 2 duration 1
+[DEBUG] schedule dfg node[7] onto fu[13] at cycle 8 within II: 2
+[DEBUG] setDFGNode 7 onto CGRANode 13 at cycle: 8
+[DEBUG] in allocateReg() t_cycle: 7; i: 0 CGRA node: 13; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[1]-->[2] (bypass:0) dfgNode: 4 at cycle 5
-[DEBUG] skip predecessor routing -- dfgNode: 4
-[DEBUG] tryToRoute -- srcDFGNode: 6, srcCGRANode: 3; dstDFGNode: 7, dstCGRANode: 2; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 6 previous: 5 II: 2
-[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 2; link: 3 duration 1
+[DEBUG] occupy link[12]-->[13] (bypass:0) dfgNode: 6 at cycle 7
+[DEBUG] tryToRoute -- srcDFGNode: 4, srcCGRANode: 8; dstDFGNode: 7, dstCGRANode: 13; backEdge: 0
+[DEBUG] check route size: 3
+[DEBUG] occupy link[8]-->[9] (bypass:1) dfgNode: 4 at cycle 4
+[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 5 II: 2
+[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 13; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[3]-->[2] (bypass:0) dfgNode: 6 at cycle 5
+[DEBUG] occupy link[9]-->[13] (bypass:0) dfgNode: 4 at cycle 5
+[DEBUG] skip predecessor routing -- dfgNode: 6
 [DEBUG] schedule dfg node[1] onto fu[5] at cycle 0 within II: 2
 [DEBUG] setDFGNode 1 onto CGRANode 5 at cycle: 0
 [DEBUG] schedule dfg node[10] onto fu[6] at cycle 1 within II: 2
@@ -334,37 +322,39 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[10]-->[11] (bypass:0) dfgNode: 2 at cycle 2
 [DEBUG] skip predecessor routing -- dfgNode: 2
-[DEBUG] schedule dfg node[4] onto fu[1] at cycle 5 within II: 2
-[DEBUG] setDFGNode 4 onto CGRANode 1 at cycle: 5
-[DEBUG] occupy link[9]-->[5] (bypass:1) dfgNode: 3 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 1; link: 0 duration 1
+[DEBUG] schedule dfg node[4] onto fu[8] at cycle 4 within II: 2
+[DEBUG] setDFGNode 4 onto CGRANode 8 at cycle: 4
+[DEBUG] in allocateReg() t_cycle: 3; i: 0 CGRA node: 8; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[5]-->[1] (bypass:0) dfgNode: 3 at cycle 4
+[DEBUG] occupy link[9]-->[8] (bypass:0) dfgNode: 3 at cycle 3
 [DEBUG] skip predecessor routing -- dfgNode: 3
-[DEBUG] schedule dfg node[6] onto fu[3] at cycle 5 within II: 2
-[DEBUG] setDFGNode 6 onto CGRANode 3 at cycle: 5
-[DEBUG] occupy link[11]-->[7] (bypass:1) dfgNode: 5 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 3; link: 0 duration 1
+[DEBUG] schedule dfg node[6] onto fu[12] at cycle 7 within II: 2
+[DEBUG] setDFGNode 6 onto CGRANode 12 at cycle: 7
+[DEBUG] occupy link[11]-->[10] (bypass:1) dfgNode: 5 at cycle 3
+[DEBUG] occupy link[10]-->[14] (bypass:1) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[14]-->[13] (bypass:1) dfgNode: 5 at cycle 5
+[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 12; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[3] (bypass:0) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[13]-->[12] (bypass:0) dfgNode: 5 at cycle 6
 [DEBUG] skip predecessor routing -- dfgNode: 5
-[DEBUG] schedule dfg node[7] onto fu[2] at cycle 6 within II: 2
-[DEBUG] setDFGNode 7 onto CGRANode 2 at cycle: 6
-[DEBUG] in allocateReg() t_cycle: 5; i: 0 CGRA node: 2; link: 2 duration 1
+[DEBUG] schedule dfg node[7] onto fu[13] at cycle 8 within II: 2
+[DEBUG] setDFGNode 7 onto CGRANode 13 at cycle: 8
+[DEBUG] in allocateReg() t_cycle: 7; i: 0 CGRA node: 13; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[1]-->[2] (bypass:0) dfgNode: 4 at cycle 5
-[DEBUG] skip predecessor routing -- dfgNode: 4
-[DEBUG] tryToRoute -- srcDFGNode: 6, srcCGRANode: 3; dstDFGNode: 7, dstCGRANode: 2; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 6 previous: 5 II: 2
-[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 2; link: 3 duration 1
+[DEBUG] occupy link[12]-->[13] (bypass:0) dfgNode: 6 at cycle 7
+[DEBUG] tryToRoute -- srcDFGNode: 4, srcCGRANode: 8; dstDFGNode: 7, dstCGRANode: 13; backEdge: 0
+[DEBUG] check route size: 3
+[DEBUG] occupy link[8]-->[9] (bypass:1) dfgNode: 4 at cycle 4
+[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 5 II: 2
+[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 13; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[3]-->[2] (bypass:0) dfgNode: 6 at cycle 5
-[DEBUG] schedule dfg node[8] onto fu[6] at cycle 8 within II: 2
-[DEBUG] setDFGNode 8 onto CGRANode 6 at cycle: 8
-[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 6; link: 1 duration 0
+[DEBUG] occupy link[9]-->[13] (bypass:0) dfgNode: 4 at cycle 5
+[DEBUG] skip predecessor routing -- dfgNode: 6
+[DEBUG] schedule dfg node[8] onto fu[14] at cycle 9 within II: 2
+[DEBUG] setDFGNode 8 onto CGRANode 14 at cycle: 9
+[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 14; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[2]-->[6] (bypass:0) dfgNode: 7 at cycle 6
+[DEBUG] occupy link[13]-->[14] (bypass:0) dfgNode: 7 at cycle 8
 [DEBUG] skip predecessor routing -- dfgNode: 7
 [DEBUG] schedule dfg node[1] onto fu[5] at cycle 0 within II: 2
 [DEBUG] setDFGNode 1 onto CGRANode 5 at cycle: 0
@@ -400,59 +390,62 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[10]-->[11] (bypass:0) dfgNode: 2 at cycle 2
 [DEBUG] skip predecessor routing -- dfgNode: 2
-[DEBUG] schedule dfg node[4] onto fu[1] at cycle 5 within II: 2
-[DEBUG] setDFGNode 4 onto CGRANode 1 at cycle: 5
-[DEBUG] occupy link[9]-->[5] (bypass:1) dfgNode: 3 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 1; link: 0 duration 1
+[DEBUG] schedule dfg node[4] onto fu[8] at cycle 4 within II: 2
+[DEBUG] setDFGNode 4 onto CGRANode 8 at cycle: 4
+[DEBUG] in allocateReg() t_cycle: 3; i: 0 CGRA node: 8; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[5]-->[1] (bypass:0) dfgNode: 3 at cycle 4
+[DEBUG] occupy link[9]-->[8] (bypass:0) dfgNode: 3 at cycle 3
 [DEBUG] skip predecessor routing -- dfgNode: 3
-[DEBUG] schedule dfg node[6] onto fu[3] at cycle 5 within II: 2
-[DEBUG] setDFGNode 6 onto CGRANode 3 at cycle: 5
-[DEBUG] occupy link[11]-->[7] (bypass:1) dfgNode: 5 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 3; link: 0 duration 1
+[DEBUG] schedule dfg node[6] onto fu[12] at cycle 7 within II: 2
+[DEBUG] setDFGNode 6 onto CGRANode 12 at cycle: 7
+[DEBUG] occupy link[11]-->[10] (bypass:1) dfgNode: 5 at cycle 3
+[DEBUG] occupy link[10]-->[14] (bypass:1) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[14]-->[13] (bypass:1) dfgNode: 5 at cycle 5
+[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 12; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[3] (bypass:0) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[13]-->[12] (bypass:0) dfgNode: 5 at cycle 6
 [DEBUG] skip predecessor routing -- dfgNode: 5
-[DEBUG] schedule dfg node[7] onto fu[2] at cycle 6 within II: 2
-[DEBUG] setDFGNode 7 onto CGRANode 2 at cycle: 6
-[DEBUG] in allocateReg() t_cycle: 5; i: 0 CGRA node: 2; link: 2 duration 1
+[DEBUG] schedule dfg node[7] onto fu[13] at cycle 8 within II: 2
+[DEBUG] setDFGNode 7 onto CGRANode 13 at cycle: 8
+[DEBUG] in allocateReg() t_cycle: 7; i: 0 CGRA node: 13; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[1]-->[2] (bypass:0) dfgNode: 4 at cycle 5
-[DEBUG] skip predecessor routing -- dfgNode: 4
-[DEBUG] tryToRoute -- srcDFGNode: 6, srcCGRANode: 3; dstDFGNode: 7, dstCGRANode: 2; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 6 previous: 5 II: 2
-[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 2; link: 3 duration 1
+[DEBUG] occupy link[12]-->[13] (bypass:0) dfgNode: 6 at cycle 7
+[DEBUG] tryToRoute -- srcDFGNode: 4, srcCGRANode: 8; dstDFGNode: 7, dstCGRANode: 13; backEdge: 0
+[DEBUG] check route size: 3
+[DEBUG] occupy link[8]-->[9] (bypass:1) dfgNode: 4 at cycle 4
+[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 5 II: 2
+[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 13; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[3]-->[2] (bypass:0) dfgNode: 6 at cycle 5
-[DEBUG] schedule dfg node[8] onto fu[6] at cycle 8 within II: 2
-[DEBUG] setDFGNode 8 onto CGRANode 6 at cycle: 8
-[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 6; link: 1 duration 0
+[DEBUG] occupy link[9]-->[13] (bypass:0) dfgNode: 4 at cycle 5
+[DEBUG] skip predecessor routing -- dfgNode: 6
+[DEBUG] schedule dfg node[8] onto fu[14] at cycle 9 within II: 2
+[DEBUG] setDFGNode 8 onto CGRANode 14 at cycle: 9
+[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 14; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[2]-->[6] (bypass:0) dfgNode: 7 at cycle 6
+[DEBUG] occupy link[13]-->[14] (bypass:0) dfgNode: 7 at cycle 8
 [DEBUG] skip predecessor routing -- dfgNode: 7
-[DEBUG] schedule dfg node[0] onto fu[7] at cycle 9 within II: 2
-[DEBUG] setDFGNode 0 onto CGRANode 7 at cycle: 9
-[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 7; link: 2 duration 1
+[DEBUG] schedule dfg node[0] onto fu[15] at cycle 10 within II: 2
+[DEBUG] setDFGNode 0 onto CGRANode 15 at cycle: 10
+[DEBUG] in allocateReg() t_cycle: 9; i: 0 CGRA node: 15; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[7] (bypass:0) dfgNode: 8 at cycle 8
+[DEBUG] occupy link[14]-->[15] (bypass:0) dfgNode: 8 at cycle 9
 [DEBUG] skip predecessor routing -- dfgNode: 8
-[DEBUG] tryToRoute -- srcDFGNode: 10, srcCGRANode: 6; dstDFGNode: 0, dstCGRANode: 7; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 0 t_dstCycle: 9 previous: 1 II: 2
-[DEBUG] reset duration is 0...
-[DEBUG] in allocateReg() t_cycle: 1; i: 1 CGRA node: 7; link: 2 duration 2
+[DEBUG] tryToRoute -- srcDFGNode: 10, srcCGRANode: 6; dstDFGNode: 0, dstCGRANode: 15; backEdge: 0
+[DEBUG] check route size: 4
+[DEBUG] occupy link[6]-->[7] (bypass:1) dfgNode: 10 at cycle 1
+[DEBUG] occupy link[7]-->[11] (bypass:1) dfgNode: 10 at cycle 2
+[DEBUG] reset duration: 1 t_dstCycle: 10 previous: 3 II: 2
+[DEBUG] in allocateReg() t_cycle: 3; i: 1 CGRA node: 15; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[7] (bypass:0) dfgNode: 10 at cycle 1
+[DEBUG] occupy link[11]-->[15] (bypass:0) dfgNode: 10 at cycle 3
 [DEBUG] in shareSameCycle is true: node 0
-[DEBUG] tryToRoute -- srcDFGNode: 0, srcCGRANode: 7; dstDFGNode: 8, dstCGRANode: 6; backEdge: 1
+[DEBUG] tryToRoute -- srcDFGNode: 0, srcCGRANode: 15; dstDFGNode: 8, dstCGRANode: 14; backEdge: 1
 [DEBUG] in shareSameCycle is true: node 8
 [DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 9 II: 2
-[DEBUG] in allocateReg() t_cycle: 9; i: 0 CGRA node: 6; link: 3 duration 1
+[DEBUG] reset duration: 1 t_dstCycle: 9 previous: 10 II: 2
+[DEBUG] in allocateReg() t_cycle: 10; i: 1 CGRA node: 14; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[6] (bypass:0) dfgNode: 0 at cycle 9
+[DEBUG] occupy link[15]-->[14] (bypass:0) dfgNode: 0 at cycle 10
 [DEBUG] schedule dfg node[1] onto fu[5] at cycle 0 within II: 2
 [DEBUG] setDFGNode 1 onto CGRANode 5 at cycle: 0
 [DEBUG] schedule dfg node[10] onto fu[6] at cycle 1 within II: 2
@@ -487,64 +480,71 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[10]-->[11] (bypass:0) dfgNode: 2 at cycle 2
 [DEBUG] skip predecessor routing -- dfgNode: 2
-[DEBUG] schedule dfg node[4] onto fu[1] at cycle 5 within II: 2
-[DEBUG] setDFGNode 4 onto CGRANode 1 at cycle: 5
-[DEBUG] occupy link[9]-->[5] (bypass:1) dfgNode: 3 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 1; link: 0 duration 1
+[DEBUG] schedule dfg node[4] onto fu[8] at cycle 4 within II: 2
+[DEBUG] setDFGNode 4 onto CGRANode 8 at cycle: 4
+[DEBUG] in allocateReg() t_cycle: 3; i: 0 CGRA node: 8; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[5]-->[1] (bypass:0) dfgNode: 3 at cycle 4
+[DEBUG] occupy link[9]-->[8] (bypass:0) dfgNode: 3 at cycle 3
 [DEBUG] skip predecessor routing -- dfgNode: 3
-[DEBUG] schedule dfg node[6] onto fu[3] at cycle 5 within II: 2
-[DEBUG] setDFGNode 6 onto CGRANode 3 at cycle: 5
-[DEBUG] occupy link[11]-->[7] (bypass:1) dfgNode: 5 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 3; link: 0 duration 1
+[DEBUG] schedule dfg node[6] onto fu[12] at cycle 7 within II: 2
+[DEBUG] setDFGNode 6 onto CGRANode 12 at cycle: 7
+[DEBUG] occupy link[11]-->[10] (bypass:1) dfgNode: 5 at cycle 3
+[DEBUG] occupy link[10]-->[14] (bypass:1) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[14]-->[13] (bypass:1) dfgNode: 5 at cycle 5
+[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 12; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[3] (bypass:0) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[13]-->[12] (bypass:0) dfgNode: 5 at cycle 6
 [DEBUG] skip predecessor routing -- dfgNode: 5
-[DEBUG] schedule dfg node[7] onto fu[2] at cycle 6 within II: 2
-[DEBUG] setDFGNode 7 onto CGRANode 2 at cycle: 6
-[DEBUG] in allocateReg() t_cycle: 5; i: 0 CGRA node: 2; link: 2 duration 1
+[DEBUG] schedule dfg node[7] onto fu[13] at cycle 8 within II: 2
+[DEBUG] setDFGNode 7 onto CGRANode 13 at cycle: 8
+[DEBUG] in allocateReg() t_cycle: 7; i: 0 CGRA node: 13; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[1]-->[2] (bypass:0) dfgNode: 4 at cycle 5
-[DEBUG] skip predecessor routing -- dfgNode: 4
-[DEBUG] tryToRoute -- srcDFGNode: 6, srcCGRANode: 3; dstDFGNode: 7, dstCGRANode: 2; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 6 previous: 5 II: 2
-[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 2; link: 3 duration 1
+[DEBUG] occupy link[12]-->[13] (bypass:0) dfgNode: 6 at cycle 7
+[DEBUG] tryToRoute -- srcDFGNode: 4, srcCGRANode: 8; dstDFGNode: 7, dstCGRANode: 13; backEdge: 0
+[DEBUG] check route size: 3
+[DEBUG] occupy link[8]-->[9] (bypass:1) dfgNode: 4 at cycle 4
+[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 5 II: 2
+[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 13; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[3]-->[2] (bypass:0) dfgNode: 6 at cycle 5
-[DEBUG] schedule dfg node[8] onto fu[6] at cycle 8 within II: 2
-[DEBUG] setDFGNode 8 onto CGRANode 6 at cycle: 8
-[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 6; link: 1 duration 0
+[DEBUG] occupy link[9]-->[13] (bypass:0) dfgNode: 4 at cycle 5
+[DEBUG] skip predecessor routing -- dfgNode: 6
+[DEBUG] schedule dfg node[8] onto fu[14] at cycle 9 within II: 2
+[DEBUG] setDFGNode 8 onto CGRANode 14 at cycle: 9
+[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 14; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[2]-->[6] (bypass:0) dfgNode: 7 at cycle 6
+[DEBUG] occupy link[13]-->[14] (bypass:0) dfgNode: 7 at cycle 8
 [DEBUG] skip predecessor routing -- dfgNode: 7
-[DEBUG] schedule dfg node[0] onto fu[7] at cycle 9 within II: 2
-[DEBUG] setDFGNode 0 onto CGRANode 7 at cycle: 9
-[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 7; link: 2 duration 1
+[DEBUG] schedule dfg node[0] onto fu[15] at cycle 10 within II: 2
+[DEBUG] setDFGNode 0 onto CGRANode 15 at cycle: 10
+[DEBUG] in allocateReg() t_cycle: 9; i: 0 CGRA node: 15; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[7] (bypass:0) dfgNode: 8 at cycle 8
+[DEBUG] occupy link[14]-->[15] (bypass:0) dfgNode: 8 at cycle 9
 [DEBUG] skip predecessor routing -- dfgNode: 8
-[DEBUG] tryToRoute -- srcDFGNode: 10, srcCGRANode: 6; dstDFGNode: 0, dstCGRANode: 7; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 0 t_dstCycle: 9 previous: 1 II: 2
-[DEBUG] reset duration is 0...
-[DEBUG] in allocateReg() t_cycle: 1; i: 1 CGRA node: 7; link: 2 duration 2
+[DEBUG] tryToRoute -- srcDFGNode: 10, srcCGRANode: 6; dstDFGNode: 0, dstCGRANode: 15; backEdge: 0
+[DEBUG] check route size: 4
+[DEBUG] occupy link[6]-->[7] (bypass:1) dfgNode: 10 at cycle 1
+[DEBUG] occupy link[7]-->[11] (bypass:1) dfgNode: 10 at cycle 2
+[DEBUG] reset duration: 1 t_dstCycle: 10 previous: 3 II: 2
+[DEBUG] in allocateReg() t_cycle: 3; i: 1 CGRA node: 15; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[7] (bypass:0) dfgNode: 10 at cycle 1
+[DEBUG] occupy link[11]-->[15] (bypass:0) dfgNode: 10 at cycle 3
 [DEBUG] in shareSameCycle is true: node 0
-[DEBUG] tryToRoute -- srcDFGNode: 0, srcCGRANode: 7; dstDFGNode: 8, dstCGRANode: 6; backEdge: 1
+[DEBUG] tryToRoute -- srcDFGNode: 0, srcCGRANode: 15; dstDFGNode: 8, dstCGRANode: 14; backEdge: 1
 [DEBUG] in shareSameCycle is true: node 8
 [DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 9 II: 2
-[DEBUG] in allocateReg() t_cycle: 9; i: 0 CGRA node: 6; link: 3 duration 1
+[DEBUG] reset duration: 1 t_dstCycle: 9 previous: 10 II: 2
+[DEBUG] in allocateReg() t_cycle: 10; i: 1 CGRA node: 14; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[6] (bypass:0) dfgNode: 0 at cycle 9
-[DEBUG] schedule dfg node[9] onto fu[2] at cycle 9 within II: 2
-[DEBUG] setDFGNode 9 onto CGRANode 2 at cycle: 9
-[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 2; link: 0 duration 1
+[DEBUG] occupy link[15]-->[14] (bypass:0) dfgNode: 0 at cycle 10
+[DEBUG] schedule dfg node[9] onto fu[0] at cycle 14 within II: 2
+[DEBUG] setDFGNode 9 onto CGRANode 0 at cycle: 14
+[DEBUG] occupy link[14]-->[10] (bypass:1) dfgNode: 8 at cycle 9
+[DEBUG] occupy link[10]-->[6] (bypass:1) dfgNode: 8 at cycle 10
+[DEBUG] occupy link[6]-->[2] (bypass:1) dfgNode: 8 at cycle 11
+[DEBUG] occupy link[2]-->[1] (bypass:1) dfgNode: 8 at cycle 12
+[DEBUG] in allocateReg() t_cycle: 13; i: 0 CGRA node: 0; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[2] (bypass:0) dfgNode: 8 at cycle 8
+[DEBUG] occupy link[1]-->[0] (bypass:0) dfgNode: 8 at cycle 13
 [DEBUG] skip predecessor routing -- dfgNode: 8
 [DEBUG] schedule dfg node[1] onto fu[5] at cycle 0 within II: 2
 [DEBUG] setDFGNode 1 onto CGRANode 5 at cycle: 0
@@ -580,349 +580,369 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[10]-->[11] (bypass:0) dfgNode: 2 at cycle 2
 [DEBUG] skip predecessor routing -- dfgNode: 2
-[DEBUG] schedule dfg node[4] onto fu[1] at cycle 5 within II: 2
-[DEBUG] setDFGNode 4 onto CGRANode 1 at cycle: 5
-[DEBUG] occupy link[9]-->[5] (bypass:1) dfgNode: 3 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 1; link: 0 duration 1
+[DEBUG] schedule dfg node[4] onto fu[8] at cycle 4 within II: 2
+[DEBUG] setDFGNode 4 onto CGRANode 8 at cycle: 4
+[DEBUG] in allocateReg() t_cycle: 3; i: 0 CGRA node: 8; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[5]-->[1] (bypass:0) dfgNode: 3 at cycle 4
+[DEBUG] occupy link[9]-->[8] (bypass:0) dfgNode: 3 at cycle 3
 [DEBUG] skip predecessor routing -- dfgNode: 3
-[DEBUG] schedule dfg node[6] onto fu[3] at cycle 5 within II: 2
-[DEBUG] setDFGNode 6 onto CGRANode 3 at cycle: 5
-[DEBUG] occupy link[11]-->[7] (bypass:1) dfgNode: 5 at cycle 3
-[DEBUG] in allocateReg() t_cycle: 4; i: 0 CGRA node: 3; link: 0 duration 1
+[DEBUG] schedule dfg node[6] onto fu[12] at cycle 7 within II: 2
+[DEBUG] setDFGNode 6 onto CGRANode 12 at cycle: 7
+[DEBUG] occupy link[11]-->[10] (bypass:1) dfgNode: 5 at cycle 3
+[DEBUG] occupy link[10]-->[14] (bypass:1) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[14]-->[13] (bypass:1) dfgNode: 5 at cycle 5
+[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 12; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[3] (bypass:0) dfgNode: 5 at cycle 4
+[DEBUG] occupy link[13]-->[12] (bypass:0) dfgNode: 5 at cycle 6
 [DEBUG] skip predecessor routing -- dfgNode: 5
-[DEBUG] schedule dfg node[7] onto fu[2] at cycle 6 within II: 2
-[DEBUG] setDFGNode 7 onto CGRANode 2 at cycle: 6
-[DEBUG] in allocateReg() t_cycle: 5; i: 0 CGRA node: 2; link: 2 duration 1
+[DEBUG] schedule dfg node[7] onto fu[13] at cycle 8 within II: 2
+[DEBUG] setDFGNode 7 onto CGRANode 13 at cycle: 8
+[DEBUG] in allocateReg() t_cycle: 7; i: 0 CGRA node: 13; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[1]-->[2] (bypass:0) dfgNode: 4 at cycle 5
-[DEBUG] skip predecessor routing -- dfgNode: 4
-[DEBUG] tryToRoute -- srcDFGNode: 6, srcCGRANode: 3; dstDFGNode: 7, dstCGRANode: 2; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 6 previous: 5 II: 2
-[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 2; link: 3 duration 1
+[DEBUG] occupy link[12]-->[13] (bypass:0) dfgNode: 6 at cycle 7
+[DEBUG] tryToRoute -- srcDFGNode: 4, srcCGRANode: 8; dstDFGNode: 7, dstCGRANode: 13; backEdge: 0
+[DEBUG] check route size: 3
+[DEBUG] occupy link[8]-->[9] (bypass:1) dfgNode: 4 at cycle 4
+[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 5 II: 2
+[DEBUG] in allocateReg() t_cycle: 5; i: 1 CGRA node: 13; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[3]-->[2] (bypass:0) dfgNode: 6 at cycle 5
-[DEBUG] schedule dfg node[8] onto fu[6] at cycle 8 within II: 2
-[DEBUG] setDFGNode 8 onto CGRANode 6 at cycle: 8
-[DEBUG] in allocateReg() t_cycle: 6; i: 0 CGRA node: 6; link: 1 duration 0
+[DEBUG] occupy link[9]-->[13] (bypass:0) dfgNode: 4 at cycle 5
+[DEBUG] skip predecessor routing -- dfgNode: 6
+[DEBUG] schedule dfg node[8] onto fu[14] at cycle 9 within II: 2
+[DEBUG] setDFGNode 8 onto CGRANode 14 at cycle: 9
+[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 14; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[2]-->[6] (bypass:0) dfgNode: 7 at cycle 6
+[DEBUG] occupy link[13]-->[14] (bypass:0) dfgNode: 7 at cycle 8
 [DEBUG] skip predecessor routing -- dfgNode: 7
-[DEBUG] schedule dfg node[0] onto fu[7] at cycle 9 within II: 2
-[DEBUG] setDFGNode 0 onto CGRANode 7 at cycle: 9
-[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 7; link: 2 duration 1
+[DEBUG] schedule dfg node[0] onto fu[15] at cycle 10 within II: 2
+[DEBUG] setDFGNode 0 onto CGRANode 15 at cycle: 10
+[DEBUG] in allocateReg() t_cycle: 9; i: 0 CGRA node: 15; link: 2 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[7] (bypass:0) dfgNode: 8 at cycle 8
+[DEBUG] occupy link[14]-->[15] (bypass:0) dfgNode: 8 at cycle 9
 [DEBUG] skip predecessor routing -- dfgNode: 8
-[DEBUG] tryToRoute -- srcDFGNode: 10, srcCGRANode: 6; dstDFGNode: 0, dstCGRANode: 7; backEdge: 0
-[DEBUG] check route size: 2
-[DEBUG] reset duration: 0 t_dstCycle: 9 previous: 1 II: 2
-[DEBUG] reset duration is 0...
-[DEBUG] in allocateReg() t_cycle: 1; i: 1 CGRA node: 7; link: 2 duration 2
+[DEBUG] tryToRoute -- srcDFGNode: 10, srcCGRANode: 6; dstDFGNode: 0, dstCGRANode: 15; backEdge: 0
+[DEBUG] check route size: 4
+[DEBUG] occupy link[6]-->[7] (bypass:1) dfgNode: 10 at cycle 1
+[DEBUG] occupy link[7]-->[11] (bypass:1) dfgNode: 10 at cycle 2
+[DEBUG] reset duration: 1 t_dstCycle: 10 previous: 3 II: 2
+[DEBUG] in allocateReg() t_cycle: 3; i: 1 CGRA node: 15; link: 1 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[7] (bypass:0) dfgNode: 10 at cycle 1
+[DEBUG] occupy link[11]-->[15] (bypass:0) dfgNode: 10 at cycle 3
 [DEBUG] in shareSameCycle is true: node 0
-[DEBUG] tryToRoute -- srcDFGNode: 0, srcCGRANode: 7; dstDFGNode: 8, dstCGRANode: 6; backEdge: 1
+[DEBUG] tryToRoute -- srcDFGNode: 0, srcCGRANode: 15; dstDFGNode: 8, dstCGRANode: 14; backEdge: 1
 [DEBUG] in shareSameCycle is true: node 8
 [DEBUG] check route size: 2
-[DEBUG] reset duration: 1 t_dstCycle: 8 previous: 9 II: 2
-[DEBUG] in allocateReg() t_cycle: 9; i: 0 CGRA node: 6; link: 3 duration 1
+[DEBUG] reset duration: 1 t_dstCycle: 9 previous: 10 II: 2
+[DEBUG] in allocateReg() t_cycle: 10; i: 1 CGRA node: 14; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[7]-->[6] (bypass:0) dfgNode: 0 at cycle 9
-[DEBUG] schedule dfg node[9] onto fu[2] at cycle 9 within II: 2
-[DEBUG] setDFGNode 9 onto CGRANode 2 at cycle: 9
-[DEBUG] in allocateReg() t_cycle: 8; i: 0 CGRA node: 2; link: 0 duration 1
+[DEBUG] occupy link[15]-->[14] (bypass:0) dfgNode: 0 at cycle 10
+[DEBUG] schedule dfg node[9] onto fu[0] at cycle 14 within II: 2
+[DEBUG] setDFGNode 9 onto CGRANode 0 at cycle: 14
+[DEBUG] occupy link[14]-->[10] (bypass:1) dfgNode: 8 at cycle 9
+[DEBUG] occupy link[10]-->[6] (bypass:1) dfgNode: 8 at cycle 10
+[DEBUG] occupy link[6]-->[2] (bypass:1) dfgNode: 8 at cycle 11
+[DEBUG] occupy link[2]-->[1] (bypass:1) dfgNode: 8 at cycle 12
+[DEBUG] in allocateReg() t_cycle: 13; i: 0 CGRA node: 0; link: 3 duration 1
 [DEBUG] done reg allocation
-[DEBUG] occupy link[6]-->[2] (bypass:0) dfgNode: 8 at cycle 8
+[DEBUG] occupy link[1]-->[0] (bypass:0) dfgNode: 8 at cycle 13
 [DEBUG] skip predecessor routing -- dfgNode: 8
-Mapping algorithm elapsed time=45ms
+Mapping algorithm elapsed time=53ms
 --------------------------- cycle:0 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [     ] → [     ] ← [     ]
+                       ↑           
+[     ] → [     ] ← [     ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [     ] → [     ]
-                                   
-[     ]   [  1  ] → [     ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [     ]   [     ]
+[     ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:1 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [     ]   [     ]   [     ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [     ]
-                                   
-[     ]   [     ] → [     ] ← [     ]
+[     ] → [     ] ← [     ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [     ]   [     ] ← [     ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:2 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [     ] → [     ] ← [     ]
+                       ↑           
+[     ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [     ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [     ]   [     ]
+[     ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:3 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [     ]
-                                   
-[     ]   [     ] → [     ] ← [     ]
+[     ] → [     ] ← [     ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:4 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [     ] → [     ] ← [     ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [     ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [     ]   [     ]
+[     ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:5 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [     ]
-                                   
-[     ]   [  4  ] → [     ] ← [  6  ]
+[     ] → [     ] ← [     ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:6 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [     ] → [     ] ← [     ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [     ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[     ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:7 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [     ]
-                                   
-[     ]   [  4  ] → [     ] ← [  6  ]
+[  6  ] → [     ] ← [     ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:8 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [     ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[     ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:9 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:10 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[     ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:11 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:12 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[     ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:13 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:14 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:15 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:16 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:17 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:18 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:19 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:20 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:21 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:22 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:23 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:24 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:25 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:26 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:27 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:28 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:29 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:30 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 --------------------------- cycle:31 ---------------------------
-[     ]   [     ]   [     ]   [     ]
-                                   
-[     ]   [  3  ]   [     ]   [  5  ]
-             ↓         ↑         ↓ 
-[     ]   [     ] ← [ 10  ] ⇄ [  0  ]
-                                   
-[     ]   [  4  ] → [  9  ] ← [  6  ]
+[  6  ] → [     ] ← [  8  ] → [     ]
+             ↑         ↓         ↑ 
+[     ] ← [  3  ]   [     ] ← [  5  ]
+                       ↑           
+[     ]   [     ] ← [ 10  ] → [     ]
+                       ↓           
+[     ] ← [     ]   [     ]   [     ]
 --------------------------- cycle:32 ---------------------------
-[     ]   [     ]   [     ]   [     ]
+[     ] ← [  7  ] → [     ] ← [  0  ]
+                       ↑           
+[  4  ] → [     ] ← [  2  ] → [     ]
+                       ↓         ↑ 
+[     ]   [  1  ] → [     ]   [     ]
                                    
-[     ]   [     ] ← [  2  ] → [     ]
-                                   
-[     ]   [  1  ] → [  8  ] → [     ]
-             ↓         ⇅         ↓ 
-[     ]   [     ]   [  7  ]   [     ]
+[  9  ]   [     ] ← [     ]   [     ]
 [Mapping II: 2]
 [Mapping Success]
 ==================================
 [ExpandableII: 2]
 ==================================
 [Utilization & DVFS stats]
-tile avg fu utilization: 34.375%; avg xbar utilization: 56.25%; avg overall utilization: 56.25%
-histogram 0% tile utilization: 7
+tile avg fu utilization: 34.375%; avg xbar utilization: 78.125%; avg overall utilization: 78.125%
+histogram 0% tile utilization: 2
 histogram (0%, 25%] tile utilization: 0
-histogram (25%, 50%] tile utilization: 0
-histogram (50%, 100%] tile utilization: 9
+histogram (25%, 50%] tile utilization: 3
+histogram (50%, 100%] tile utilization: 11
 tile average DVFS frequency level: 100%
 histogram 0% tile DVFS frequency ratio: 0
 histogram 25% tile DVFS frequency ratio: 0
 histogram 50% tile DVFS frequency ratio: 0
 histogram 100% tile DVFS frequency ratio: 16
 ==================================
-[DEBUG] inside roi for CGRA node 5...
+[DEBUG] inside roi for CGRA node 1...
+[DEBUG] inside roi for CGRA node 6...
+[DEBUG] inside roi for CGRA node 9...
+[DEBUG] inside roi for CGRA node 11...
+[DEBUG] inside roi for CGRA node 14...
+[DEBUG] inside roi for CGRA node 2...
 [DEBUG] inside roi for CGRA node 7...
+[DEBUG] inside roi for CGRA node 10...
+[DEBUG] inside roi for CGRA node 10...
+[DEBUG] inside roi for CGRA node 13...
+[DEBUG] inside roi for CGRA node 1...
+[DEBUG] inside roi for CGRA node 6...
+[DEBUG] inside roi for CGRA node 9...
+[DEBUG] inside roi for CGRA node 11...
+[DEBUG] inside roi for CGRA node 14...
 [Output Json]
 [Output Json for Incremental Mapping]
 ==================================

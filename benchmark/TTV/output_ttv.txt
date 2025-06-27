@@ -639,7 +639,7 @@ DFG node count: 11; DFG edge count: 14; SIMD node count: 0
 [DEBUG] done reg allocation
 [DEBUG] occupy link[6]-->[2] (bypass:0) dfgNode: 8 at cycle 8
 [DEBUG] skip predecessor routing -- dfgNode: 8
-Mapping algorithm elapsed time=42ms
+Mapping algorithm elapsed time=45ms
 --------------------------- cycle:0 ---------------------------
 [     ]   [     ]   [     ]   [     ]
                                    
