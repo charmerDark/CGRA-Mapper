@@ -1,5 +1,5 @@
 {
-  "kernel"                : "_Z6kernelPA2_A2_fPS_S1_",
+  "kernel"                : "_Z6kernelPA3_A3_fPS_S2_S2_",
   "targetFunction"        : false,
   "targetNested"          : false,
   "targetLoopsID"         : [0],
