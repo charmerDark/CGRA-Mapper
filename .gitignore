@@ -12,4 +12,4 @@ build*/
 *.o
 benchmark/*/dfg.json
 benchmark/*/config.json
-benchmark/*/
+benchmark/*/increMapInput.json
