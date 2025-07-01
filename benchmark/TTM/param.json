@@ -9,7 +9,7 @@
   "precisionAware"        : false,
   "fusionStrategy"        : [],
   "isTrimmedDemo"         : true,
-  "heuristicMapping"      : false,
+  "heuristicMapping"      : true,
   "parameterizableCGRA"   : false,
   "diagonalVectorization" : false,
   "bypassConstraint"      : 8,
