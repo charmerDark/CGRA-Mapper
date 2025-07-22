@@ -17,12 +17,13 @@ using json = nlohmann::json;
 CGRA::CGRA(int t_rows, int t_columns, bool t_diagonalVectorization,
 	   list<string>* t_fusionStrategy, bool t_parameterizableCGRA,
 	   map<string, list<int>*>* t_additionalFunc,
-	   bool t_supportDVFS, int t_DVFSIslandDim) {
+	   bool t_supportDVFS, int t_DVFSIslandDim, bool enableMultipleOps) {
   m_rows = t_rows;
   m_columns = t_columns;
   m_FUCount = t_rows * t_columns;
   m_supportDVFS = t_supportDVFS;
   m_DVFSIslandDim = t_DVFSIslandDim;
+  m_supportInclusive = enableMultipleOps;
   m_supportComplex = new list<string>();
   m_supportCall = new list<string>();
   nodes = new CGRANode**[t_rows];
@@ -53,6 +54,9 @@ CGRA::CGRA(int t_rows, int t_columns, bool t_diagonalVectorization,
       nodes[i] = new CGRANode*[t_columns];
       for (int j=0; j<t_columns; ++j) {
         nodes[i][j] = new CGRANode(node_id, j, i);
+        if (!enableMultipleOps) {
+          nodes[i][j]->disableMultipleOps();
+        }
 	// nodes[i][j]->disableAllFUs();
 	id2Node[node_id] = nodes[i][j];
 	node_id += 1;
@@ -75,17 +79,46 @@ CGRA::CGRA(int t_rows, int t_columns, bool t_diagonalVectorization,
       } else {
         bool supportAllFUs = param["tiles"][to_string(nodeID)]["supportAllFUs"];
 	if (!supportAllFUs) {
-	  id2Node[nodeID]->disableAllFUs();
-	}
+          id2Node[nodeID]->disableAllFUs();
+
+          auto supportedFUs = param["tiles"][to_string(nodeID)]["supportedFUs"];
+          cout << "Node " << nodeID << " supports: ";
+          for (const auto& fu : supportedFUs) {
+            cout << fu << " ";
+            if (fu == "Add") {
+              id2Node[nodeID]->enableAdd();
+            } else if (fu == "Br") {
+              id2Node[nodeID]->enableBr();
+            } else if (fu == "Cmp") {
+              id2Node[nodeID]->enableCmp();
+            } else if (fu == "Ld") {
+              id2Node[nodeID]->enableLoad();
+            } else if (fu == "Logic") {
+              id2Node[nodeID]->enableLogic();
+            } else if (fu == "MAC") {
+              id2Node[nodeID]->enableMAC();
+            } else if (fu == "Mul") {
+              id2Node[nodeID]->enableMul();
+            } else if (fu == "Phi") {
+              id2Node[nodeID]->enablePhi();
+            } else if (fu == "Ret") {
+              id2Node[nodeID]->enableReturn();
+            } else if (fu == "Sel") {
+              id2Node[nodeID]->enableSel();
+            } else if (fu == "Shift") {
+              id2Node[nodeID]->enableShift();
+            } else if (fu == "St") {
+              id2Node[nodeID]->enableStore();
+            }
+          }
+          cout << " \n " << endl;
+        }
 	if (param["tiles"][to_string(nodeID)].contains("accessMem")) {
 	  if (param["tiles"][to_string(nodeID)]["accessMem"]) {
 	    id2Node[nodeID]->enableLoad();
 	    id2Node[nodeID]->enableStore();
 	  }
 	}
-
-	// TODO: need to take care of supportedFUs:
-	//
       }
     }
 
@@ -118,6 +151,9 @@ CGRA::CGRA(int t_rows, int t_columns, bool t_diagonalVectorization,
       nodes[i] = new CGRANode*[t_columns];
       for (int j=0; j<t_columns; ++j) {
         nodes[i][j] = new CGRANode(node_id++, j, i);
+        if (!enableMultipleOps) {
+          nodes[i][j]->disableMultipleOps();
+        }
       }
     }
 
@@ -394,3 +430,6 @@ void CGRA::syncDVFSIsland(CGRANode* t_node) {
   }
 }
 
+bool CGRA::getSupportInclusive() {
+  return m_supportInclusive;
+}
